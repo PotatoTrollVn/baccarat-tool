@@ -22,7 +22,7 @@ Since this is a static web application, you don't need to install any heavy depe
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/baccarat-tool.git](https://github.com/potatotrollvn/baccarat-tool.git)
+    git clone [https://github.com/potatotrollvn/baccarat-tool.git](https://github.com/potatotrollvn/baccarat-tool.git)
     ```
 2.  **Open the project:**
     Navigate to the folder and open `[index.html](https://potatotrollvn.github.io/baccarat-tool/)` in any modern web browser (Chrome, Edge, Firefox).
