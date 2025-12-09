@@ -1,0 +1,35 @@
+/* Reset và Base styles */
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+}
+
+html {
+  background: #1a1a1a;
+}
+
+/* Các class tùy chỉnh */
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 149, 218, 0.3);
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(220, 38, 38, 0.2);
+}
+
+/* Hiệu ứng chuyển trang */
+@view-transition { 
+  navigation: auto; 
+}
