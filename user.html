@@ -1,39 +1,21 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>body { font-family: sans-serif; background: #0f172a; color: white; } .glass { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.05); }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:sans-serif;background:#0f172a;color:white}.glass{background:rgba(30,41,59,0.7);border:1px solid rgba(255,255,255,0.05)}</style>
 </head>
 <body class="min-h-screen flex flex-col p-6">
-    <nav class="flex justify-between items-center mb-8">
-        <h1 class="text-2xl font-bold text-pink-500">BCR USER</h1>
-        <a href="index.html" class="text-sm text-gray-400 hover:text-white">Quay lại</a>
-    </nav>
-    <div id="loading" class="text-center py-20">Loading...</div>
-    <div id="dashboard" class="hidden max-w-4xl mx-auto w-full space-y-6">
-        <div class="glass p-6 rounded-xl flex items-center justify-between">
-            <div>
-                <h2 id="user-email" class="text-xl font-bold">...</h2>
-                <p class="text-gray-400 text-sm">Thành viên</p>
-            </div>
-            <div class="text-right">
-                <p class="text-gray-400 text-xs uppercase">Số dư</p>
-                <div class="text-3xl font-bold text-pink-400"><span id="user-tokens">0</span> Tokens</div>
-            </div>
-        </div>
-        <div class="glass p-6 rounded-xl">
-            <h3 class="font-bold mb-4">Lịch sử giao dịch</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                    <thead><tr class="text-gray-500 border-b border-white/10"><th class="pb-2">Nội dung</th><th class="pb-2">Token</th><th class="pb-2">Thời gian</th></tr></thead>
-                    <tbody id="history-list" class="divide-y divide-white/5"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <script type="module" src="user-core.js"></script>
+<nav class="flex justify-between items-center mb-8"><h1 class="text-2xl font-bold text-pink-500">BCR USER</h1><a href="index.html" class="text-sm text-gray-400 hover:text-white">Back</a></nav>
+<div id="ld" class="text-center py-20">Loading...</div>
+<div id="db" class="hidden max-w-4xl mx-auto w-full space-y-6"><div class="glass p-6 rounded-xl flex items-center justify-between"><div><h2 id="ue" class="text-xl font-bold">...</h2><p class="text-gray-400 text-sm">Member</p></div><div class="text-right"><p class="text-gray-400 text-xs uppercase">Balance</p><div class="text-3xl font-bold text-pink-400"><span id="ut">0</span> Tokens</div></div></div><div class="glass p-6 rounded-xl"><h3 class="font-bold mb-4">History</h3><div class="overflow-x-auto"><table class="w-full text-left text-sm"><thead><tr class="text-gray-500 border-b border-white/10"><th class="pb-2">Item</th><th class="pb-2">Token</th><th class="pb-2">Time</th></tr></thead><tbody id="hl" class="divide-y divide-white/5"></tbody></table></div></div></div>
+<script type="module">
+import{initializeApp as _i}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";import{getAuth as _a,onAuthStateChanged as _c}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";import{getFirestore as _f,doc as _d,onSnapshot as _os,collection as _cl,query as _q,orderBy as _ob,getDocs as _gd}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+const _0x={apiKey:"AIzaSyBs-L2sgqSQMviXU3-GODND8Wt4uaj7u7U",authDomain:"bcr-tool.firebaseapp.com",projectId:"bcr-tool",storageBucket:"bcr-tool.firebasestorage.app",messagingSenderId:"937779161122",appId:"1:937779161122:web:3bd66c1a0a6fee421e827b"};
+const app=_i(_0x),auth=_a(app),db=_f(app);
+_c(auth,async(u)=>{if(u){document.getElementById('ld').classList.add('hidden');document.getElementById('db').classList.remove('hidden');document.getElementById('ue').textContent=u.email;_os(_d(db,"users",u.uid),(d)=>{if(d.exists())document.getElementById('ut').textContent=d.data().tokens||0});const q=_q(_cl(db,"users",u.uid,"history"),_ob("createdAt","desc"));const s=await _gd(q);const l=document.getElementById('hl');l.innerHTML='';s.forEach((d)=>{const v=d.data(),t=v.createdAt?new Date(v.createdAt.seconds*1000).toLocaleString('vi-VN'):'';l.innerHTML+=`<tr class="group hover:bg-white/5"><td class="py-3">${v.packageName}</td><td class="py-3 text-green-400 font-bold">+${v.tokens}</td><td class="py-3 text-gray-400">${t}</td></tr>`})}else{window.location.href='index.html'}});
+</script>
 </body>
 </html>
