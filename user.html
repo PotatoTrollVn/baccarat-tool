@@ -1,1 +1,39 @@
-<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>User</title><script src="https://cdn.tailwindcss.com"></script><style>body{background:#0f172a;color:#fff;font-family:sans-serif}.g{background:rgba(30,41,59,0.7);border:1px solid rgba(255,255,255,0.05)}.h{display:none!important}</style></head><body class="min-h-screen flex flex-col p-6"><nav class="flex justify-between items-center mb-8"><h1 class="text-2xl font-bold text-pink-500">USER</h1><a href="index.html" class="text-sm text-gray-400 hover:text-white">Back</a></nav><div id="l" class="text-center py-20">Loading...</div><div id="d" class="h max-w-4xl mx-auto w-full space-y-6"><div class="g p-6 rounded-xl flex justify-between"><div><h2 id="ue" class="text-xl font-bold">...</h2><p class="text-gray-400 text-sm">Member</p></div><div class="text-right"><p class="text-gray-400 text-xs uppercase">Balance</p><div class="text-3xl font-bold text-pink-400"><span id="ut">0</span></div></div></div><div class="g p-6 rounded-xl"><h3 class="font-bold mb-4">History</h3><div class="overflow-x-auto"><table class="w-full text-left text-sm"><tbody id="hl" class="divide-y divide-white/5"></tbody></table></div></div></div><script type="module">import{initializeApp as _i}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";import{getAuth as _a,onAuthStateChanged as _c}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";import{getFirestore as _f,doc as _d,onSnapshot as _s,collection as _cl,query as _q,orderBy as _o,getDocs as _g}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";const _x=s=>atob(s);const _k={v1:_x('QUl6YVN5QnMtTDJzZ3FTUU12aVJVMy1HT0RORDhXdDR1YWo3dTdV'),v2:_x('YmNyLXRvb2wuZmlyZWJhc2VhcHAuY29t'),v3:_x('YmNyLXRvb2w='),v4:_x('YmNyLXRvb2wuZmlyZWJhc2VzdG9yYWdlLmFwcA=='),v5:_x('OTM3Nzc5MTYxMTIy'),v6:_x('MTo5Mzc3NzkxNjExMjI6d2ViOjNiZDY2YzFhMGE2ZmVlNDIxZTgyN2I=')};const _cf={apiKey:_k.v1,authDomain:_k.v2,projectId:_k.v3,storageBucket:_k.v4,messagingSenderId:_k.v5,appId:_k.v6};const _ap=_i(_cf),_au=_a(_ap),_db=_f(_ap);const $=i=>document.getElementById(i);_c(_au,async(u)=>{if(u){$('l').classList.add('h');$('d').classList.remove('h');$('ue').textContent=u.email;_s(_d(_db,"users",u.uid),(d)=>{if(d.exists())$('ut').textContent=d.data().tokens||0});const q=_q(_cl(_db,"users",u.uid,"history"),_o("createdAt","desc"));const qs=await _g(q);const l=$('hl');l.innerHTML='';qs.forEach((d)=>{const x=d.data(),t=x.createdAt?new Date(x.createdAt.seconds*1000).toLocaleString('vi'):'';l.innerHTML+=`<tr class="group hover:bg-white/5"><td class="py-3">${x.packageName}</td><td class="py-3 text-green-400 font-bold">+${x.tokens}</td><td class="py-3 text-gray-400">${t}</td></tr>`})}else{window.location.href='index.html'}});</script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { font-family: sans-serif; background: #0f172a; color: white; } .glass { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.05); }</style>
+</head>
+<body class="min-h-screen flex flex-col p-6">
+    <nav class="flex justify-between items-center mb-8">
+        <h1 class="text-2xl font-bold text-pink-500">BCR USER</h1>
+        <a href="index.html" class="text-sm text-gray-400 hover:text-white">Quay lại</a>
+    </nav>
+    <div id="loading" class="text-center py-20">Loading...</div>
+    <div id="dashboard" class="hidden max-w-4xl mx-auto w-full space-y-6">
+        <div class="glass p-6 rounded-xl flex items-center justify-between">
+            <div>
+                <h2 id="user-email" class="text-xl font-bold">...</h2>
+                <p class="text-gray-400 text-sm">Thành viên</p>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-400 text-xs uppercase">Số dư</p>
+                <div class="text-3xl font-bold text-pink-400"><span id="user-tokens">0</span> Tokens</div>
+            </div>
+        </div>
+        <div class="glass p-6 rounded-xl">
+            <h3 class="font-bold mb-4">Lịch sử giao dịch</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead><tr class="text-gray-500 border-b border-white/10"><th class="pb-2">Nội dung</th><th class="pb-2">Token</th><th class="pb-2">Thời gian</th></tr></thead>
+                    <tbody id="history-list" class="divide-y divide-white/5"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="user-core.js"></script>
+</body>
+</html>
