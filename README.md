@@ -53,4 +53,4 @@ Since this is a static web application, you don't need to install any heavy depe
 
 ---
 
-© 2024 Baccarat Prediction Tool. All rights reserved.
+© 2025 Baccarat Prediction Tool. All rights reserved.
