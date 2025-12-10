@@ -1,14 +1,46 @@
-<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Sys</title><script src="https://cdn.tailwindcss.com"></script><style>body{background:#0f172a;color:#fff;font-family:sans-serif}.x{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.05)}.h{display:none!important}</style></head><body class="min-h-screen p-6"><div id="z1" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center"><div class="x p-8 rounded-2xl w-full max-w-md text-center"><h2 class="text-2xl font-bold mb-6 text-pink-500">ROOT</h2><input id="i1" type="email" placeholder="ID" class="w-full mb-4 p-3 rounded bg-slate-800 text-white border-none outline-none"><input id="i2" type="password" placeholder="Key" class="w-full mb-6 p-3 rounded bg-slate-800 text-white border-none outline-none"><button id="b1" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded">GO</button><p id="e1" class="text-red-500 mt-4 text-sm h"></p></div></div><div id="z2" class="h max-w-7xl mx-auto"><header class="flex justify-between items-center mb-10 border-b border-slate-800 pb-6"><h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">ADMIN</h1><div class="flex items-center gap-4"><span id="u1" class="text-gray-400 font-semibold">...</span><button id="b2" class="text-sm bg-slate-800 px-4 py-2 rounded text-white">Out</button></div></header><div class="grid lg:grid-cols-2 gap-8"><div class="x rounded-2xl p-6 h-fit"><h2 class="text-xl font-bold text-yellow-400 mb-6">Queue</h2><div id="l1" class="space-y-4"></div></div><div class="x rounded-2xl p-6 opacity-80"><h2 class="text-xl font-bold text-green-400 mb-6">Log</h2><div id="l2" class="space-y-4"></div></div></div></div><script type="module">import{initializeApp as _I}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";import{getAuth as _A,signInWithEmailAndPassword as _S,signOut as _O,onAuthStateChanged as _C}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";import{getFirestore as _F,collection as _CL,query as _Q,orderBy as _OB,onSnapshot as _SN,doc as _D,runTransaction as _RT,serverTimestamp as _ST,setDoc as _SD,increment as _IC}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-const _x=s=>atob(s);
-const _k={a:_x('YXBpS2V5'),b:_x('YXV0aERvbWFpbg=='),c:_x('cHJvamVjdElk'),d:_x('c3RvcmFnZUJ1Y2tldA=='),e:_x('bWVzc2FnaW5nU2VuZGVySWQ='),f:_x('YXBwSWQ='),v1:_x('QUl6YVN5QnMtTDJzZ3FTUU12aVJVMy1HT0RORDhXdDR1YWo3dTdV'),v2:_x('YmNyLXRvb2wuZmlyZWJhc2VhcHAuY29t'),v3:_x('YmNyLXRvb2w='),v4:_x('YmNyLXRvb2wuZmlyZWJhc2VzdG9yYWdlLmFwcA=='),v5:_x('OTM3Nzc5MTYxMTIy'),v6:_x('MTo5Mzc3NzkxNjExMjI6d2ViOjNiZDY2YzFhMGE2ZmVlNDIxZTgyN2I=')};
-const _cf={};[_k.a,_k.b,_k.c,_k.d,_k.e,_k.f].forEach((k,i)=>_cf[k]=[_k.v1,_k.v2,_k.v3,_k.v4,_k.v5,_k.v6][i]);
-const _wh=_x("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0ODM3NTUwNjAxNjc5NjgzMy84Sy01UWxuSm9henRxd000eTBXajROMVdyUXBaLS1PMXlsWVZnTTlzU000ZnRHaE9Wd1BtQ3ZYU0lYY1FrVThoVEc5Yg==");
-const _ap=_I(_cf),_au=_A(_ap),_db=_F(_ap);
-const $=(i)=>document.getElementById(i);
-const _z={t:_x('dHJhbnNhY3Rpb25z'),u:_x('dXNlcnM='),h:_x('aGlzdG9yeQ=='),s:_x('c3RhdHVz'),p:_x('cGVuZGluZw=='),a:_x('YXBwcm92ZWQ='),r:_x('cmVqZWN0ZWQ='),m:_x('TW9NbyBEZXBvc2l0')};
-$('b1').onclick=async()=>{try{await _S(_au,$('i1').value,$('i2').value)}catch(e){$('e1').textContent="Denied";$('e1').classList.remove('h')}};$('b2').onclick=()=>_O(_au);
-_C(_au,u=>{if(u){$('z1').classList.add('h');$('z2').classList.remove('h');$('u1').textContent=u.email;_L()}else{$('z1').classList.remove('h');$('z2').classList.add('h')}});
-function _L(){const q=_Q(_CL(_db,_z.t),_OB(_x('Y3JlYXRlZEF0'),"desc"));_SN(q,s=>{const p=$('l1'),a=$('l2');p.innerHTML='';a.innerHTML='';if(s.empty)p.innerHTML='-';s.forEach(r=>{const o=r.data(),c=_M(o);if(o.status===_z.p)p.appendChild(c);else if(o.status===_z.a)a.appendChild(c)})})}
-function _M(o){const d=document.createElement('div'),ip=o.status===_z.p;d.className=`p-4 rounded-xl border ${ip?'bg-slate-800 border-yellow-500/30':'bg-slate-900 border-white/5 opacity-70'}`;const t=o.createdAt?new Date(o.createdAt.seconds*1000).toLocaleString('vi'):'.';const m=new Intl.NumberFormat('vi').format(o.price);d.innerHTML=`<div class="flex justify-between mb-2"><div><div class="text-xs text-gray-400 font-bold">${o.packageName}</div><div class="text-xl font-bold text-white">+${o.tokens}</div><div class="text-xs text-pink-400 font-mono">${o.orderId}</div></div><div class="text-right"><div class="text-lg font-bold text-green-400">${m}</div><div class="text-xs text-gray-500">${t}</div></div></div><div class="text-sm text-gray-400 mb-3">${o.email}</div>${ip?`<div class="grid grid-cols-2 gap-2"><button onclick="window._X(1,'${o.orderId}','${o.uid}',${o.tokens},'${o.email}')" class="bg-green-600 text-white font-bold py-2 rounded">OK</button><button onclick="window._X(0,'${o.orderId}')" class="bg-red-900/50 text-red-200 font-bold py-2 rounded">NO</button></div>`:`<div class="text-center text-xs font-bold text-green-500 bg-green-500/10 py-1 rounded">DONE</div>`}`;return d}
-window._X=async(t,oid,uid,tk,em)=>{if(!confirm("?"))return;if(t===1){try{await _RT(_db,async(tr)=>{const or=_D(_db,_z.t,oid),ur=_D(_db,_z.u,uid),hr=_D(_CL(_db,_z.u,uid,_z.h));tr.update(or,{status:_z.a,approvedAt:_ST()});tr.update(ur,{tokens:_IC(tk)});tr.set(hr,{packageName:_z.m,tokens:tk,method:'MoMo',createdAt:_ST(),status:'Success'})});if(_wh.includes('discord'))fetch(_wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:"BOT",embeds:[{title:"OK",color:5763719,fields:[{name:"U",value:em,inline:1},{name:"T",value:`+${tk}`,inline:1},{name:"ID",value:oid}]}]})});alert("OK")}catch(e){alert(e.message)}}else{await _SD(_D(_db,_z.t,oid),{status:_z.r},{merge:true})}};
-</script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - BCR Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f1f5f9; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div id="login-overlay" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center">
+        <div class="glass p-8 rounded-2xl w-full max-w-md text-center">
+            <h2 class="text-2xl font-bold mb-6 text-pink-500">🛡️ ADMIN ACCESS</h2>
+            <input id="admin-email" type="email" placeholder="Email Admin" class="w-full mb-4 p-3 rounded bg-slate-800 border border-slate-700 text-white outline-none">
+            <input id="admin-password" type="password" placeholder="Mật khẩu" class="w-full mb-6 p-3 rounded bg-slate-800 border border-slate-700 text-white outline-none">
+            <button id="btn-login" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded">ĐĂNG NHẬP</button>
+            <p id="login-error" class="text-red-500 mt-4 text-sm hidden"></p>
+        </div>
+    </div>
+    <div id="dashboard" class="hidden max-w-7xl mx-auto">
+        <header class="flex justify-between items-center mb-10 border-b border-gray-800 pb-6">
+            <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">QUẢN LÝ ĐƠN HÀNG</h1>
+            <div class="flex items-center gap-4">
+                <span id="admin-name" class="text-gray-400 font-semibold">Admin</span>
+                <button id="btn-logout" class="text-sm bg-slate-800 px-4 py-2 rounded text-white">Đăng xuất</button>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass rounded-2xl p-6 h-fit">
+                <h2 class="text-xl font-bold text-yellow-400 mb-6">⏳ Đang Chờ Duyệt</h2>
+                <div id="pending-list" class="space-y-4"></div>
+            </div>
+            <div class="glass rounded-2xl p-6 opacity-80">
+                <h2 class="text-xl font-bold text-green-400 mb-6">✅ Đã Duyệt Gần Đây</h2>
+                <div id="approved-list" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="admin-core.js"></script>
+</body>
+</html>
