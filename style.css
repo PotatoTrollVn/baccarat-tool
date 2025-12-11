@@ -1,35 +1,185 @@
-/* Reset và Base styles */
+/* --- CẤU HÌNH MÀU SẮC & FONT --- */
+:root {
+    --bg-dark: #0f172a;       /* Nền chính (Slate 900) */
+    --glass-bg: rgba(30, 41, 59, 0.7); /* Màu kính */
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --primary: #3b82f6;       /* Xanh dương chủ đạo */
+    --accent: #06b6d4;        /* Xanh ngọc điểm nhấn */
+    --banker: #ef4444;        /* Đỏ (Banker) */
+    --player: #3b82f6;        /* Xanh (Player) */
+    --tie: #10b981;           /* Lá (Hòa) */
+    --text-main: #f8fafc;     /* Chữ trắng sáng */
+    --text-muted: #94a3b8;    /* Chữ xám mờ */
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background: #1a1a1a;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
 }
 
-html {
-  background: #1a1a1a;
+/* --- LAYOUT & CONTAINER --- */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
 }
 
-/* Các class tùy chỉnh */
+/* --- HIỆU ỨNG KÍNH (GLASSMORPHISM) --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+/* --- BUTTONS --- */
 .btn-primary {
-  transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    width: 100%;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 149, 218, 0.3);
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-game {
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 900;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 20px 0;
+    transition: transform 0.1s;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.3);
 }
 
-.card {
-  transition: all 0.3s ease;
+.btn-game:active { transform: translateY(4px); box-shadow: none; }
+.bg-p { background: var(--player); }
+.bg-b { background: var(--banker); }
+.bg-t { background: var(--tie); }
+
+/* --- INPUTS --- */
+.input-dark {
+    width: 100%;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+.input-dark:focus { border-color: var(--accent); }
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
+@keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+.animate-pulse { animation: pulse 1.5s infinite; }
+
+/* --- NOTIFICATIONS --- */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.95);
+    border-left: 4px solid var(--accent);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    font-size: 14px;
+    transform: translateX(-120%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.toast-visible { transform: translateX(0); }
+
+/* --- RESPONSIVE GRID --- */
+.grid-layout { display: grid; grid-template-columns: 350px 1fr; gap: 24px; height: 100%; }
+.grid-responsive { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+@media (max-width: 900px) {
+    .app-container { padding: 16px; }
+    .grid-layout { grid-template-columns: 1fr; } /* Chuyển thành 1 cột trên mobile */
+    .hide-mobile { display: none !important; }
+    h1 { font-size: 28px !important; }
+}
+/* --- FOOTER & SCROLL SECTIONS --- */
+.footer-section {
+    margin-top: 80px; /* Cách xa nội dung bên trên */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(220, 38, 38, 0.2);
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-/* Hiệu ứng chuyển trang */
-@view-transition { 
-  navigation: auto; 
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s, transform 0.2s;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid transparent;
+}
+
+.footer-link:hover {
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.scroll-hint {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 12px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
 }
