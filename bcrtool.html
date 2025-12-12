@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Baccarat Analyzer V8.0 - BCR Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS bổ sung riêng cho trang này để giữ layout grid */
+        .calc-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
+            height: calc(100vh - 100px);
+            padding-bottom: 20px;
+        }
+        @media (max-width: 900px) {
+            .calc-layout {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                gap: 16px;
+            }
+            .chart-container { min-height: 400px; }
+            #ai-result { font-size: 60px !important; }
+        }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-white min-h-screen flex flex-col">
+
+    <div class="glass-panel sticky top-0 z-50 rounded-none border-x-0 border-t-0 px-6 py-4 flex justify-between items-center bg-[#0f172a]/90 backdrop-blur-md">
+        <div class="font-black text-xl tracking-tighter">BCR<span class="text-blue-500">TOOL</span></div>
+        <div class="flex items-center gap-3">
+            <div id="token-display" class="hidden font-bold text-[#06b6d4] bg-[#06b6d4]/15 border border-[#06b6d4] px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                💎 <span id="user-tokens">...</span>
+            </div>
+            <a href="index.html" class="px-4 py-2 border border-white/10 rounded-lg font-semibold bg-white/5 text-sm hover:bg-white/10 transition">
+                🏠 Thoát
+            </a>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <div class="flex justify-between items-center mb-4 mt-2">
+            <h1 class="text-xl font-extrabold text-white">BACCARAT MATRIX V8.0</h1>
+        </div>
+
+        <div class="calc-layout">
+            
+            <div class="glass-panel h-fit p-6 flex flex-col gap-4">
+                
+                <div class="bg-black/40 rounded-2xl p-6 text-center border border-white/10 relative overflow-hidden">
+                    <h3 class="text-slate-400 text-xs font-bold tracking-widest mb-2 uppercase">KẾT QUẢ DỰ BÁO</h3>
+                    
+                    <div id="ai-result" class="text-6xl font-black text-white mb-2 transition-transform duration-200 scale-100">?</div>
+                    
+                    <div class="flex justify-center gap-2 text-sm text-slate-400">
+                        <span>Độ tin cậy: <b id="ai-confidence" class="text-emerald-500">0%</b></span>
+                    </div>
+                    
+                    <div id="ai-reason" class="text-xs text-slate-500 mt-2 font-medium">Sẵn sàng nhận dữ liệu...</div>
+                </div>
+
+                <div class="bg-white/5 p-3 rounded-xl">
+                    <div class="flex justify-between mb-2 text-xs font-bold">
+                        <span class="text-slate-400">ĐỘ CHÍNH XÁC</span>
+                        <span id="winrate-text" class="text-emerald-500">100%</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-black/50 rounded-full overflow-hidden">
+                        <div id="winrate-bar" class="h-full bg-emerald-500 transition-all duration-300 w-full"></div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-2">
+                    <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Nhập kết quả vừa ra</p>
+                    <div class="flex gap-3 mb-4">
+                        <button id="btn-p" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#3b82f6] shadow-lg shadow-blue-500/30 active:scale-95 transition">P</button>
+                        <button id="btn-b" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#ef4444] shadow-lg shadow-red-500/30 active:scale-95 transition">B</button>
+                        <button id="btn-t" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#10b981] shadow-lg shadow-emerald-500/30 active:scale-95 transition">T</button>
+                    </div>
+                    <button id="btn-reset" class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-slate-400 font-bold text-sm transition">
+                        LÀM MỚI BẢNG (RESET)
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel p-2 flex items-center justify-center relative overflow-hidden chart-container">
+                <canvas id="chart-canvas" class="block w-full h-full"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="bcrtool.js"></script>
+</body>
+</html>
