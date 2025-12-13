@@ -75,16 +75,26 @@
                 </div>
 
                 <div class="text-center mt-2">
-                    <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Nhập kết quả vừa ra</p>
-                    <div class="flex gap-3 mb-4">
-                        <button id="btn-p" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#3b82f6] shadow-lg shadow-blue-500/30 active:scale-95 transition">P</button>
-                        <button id="btn-b" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#ef4444] shadow-lg shadow-red-500/30 active:scale-95 transition">B</button>
-                        <button id="btn-t" class="flex-1 h-12 text-xl font-bold rounded-xl text-white bg-[#10b981] shadow-lg shadow-emerald-500/30 active:scale-95 transition">T</button>
-                    </div>
-                    <button id="btn-reset" class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-slate-400 font-bold text-sm transition">
-                        LÀM MỚI BẢNG (RESET)
-                    </button>
-                </div>
+    <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Nhập kết quả</p>
+    
+    <div class="flex gap-2 mb-3">
+        <button id="btn-p" class="flex-1 h-12 text-xl font-black rounded-xl text-white bg-[#3b82f6] shadow-lg shadow-blue-500/20 active:scale-95 transition border-b-4 border-blue-700">P</button>
+        <button id="btn-b" class="flex-1 h-12 text-xl font-black rounded-xl text-white bg-[#ef4444] shadow-lg shadow-red-500/20 active:scale-95 transition border-b-4 border-red-700">B</button>
+        <button id="btn-t" class="flex-1 h-12 text-xl font-black rounded-xl text-white bg-[#10b981] shadow-lg shadow-emerald-500/20 active:scale-95 transition border-b-4 border-emerald-700">T</button>
+    </div>
+
+    <div class="flex gap-2">
+        <button id="btn-undo" class="flex-1 py-3 rounded-lg font-bold text-sm transition bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 hover:bg-yellow-500/20 active:scale-95 flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+            HOÀN TÁC
+        </button>
+        
+        <button id="btn-reset" class="flex-1 py-3 rounded-lg font-bold text-sm transition bg-slate-700/50 text-slate-400 border border-slate-600/30 hover:bg-slate-700/80 active:scale-95 flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            LÀM MỚI
+        </button>
+    </div>
+</div>
             </div>
 
             <div class="glass-panel p-2 flex items-center justify-center relative overflow-hidden chart-container">
